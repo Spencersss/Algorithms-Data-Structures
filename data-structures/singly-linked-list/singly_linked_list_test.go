@@ -1,26 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
 
-func TestSuccessAppendSinglyLinkedList(t *testing.T) {
-	list := NewSinglyLinkedList()
-	list.Append(25)
-
-	expectedLength := 1
-	expectedData := 25
-
-	if expectedLength != list.Length() {
-		t.Errorf("Expected length of %d but got %d.", expectedLength, list.Length())
-	}
-
-	if list.Head.Data != expectedData {
-		t.Errorf("Expected head node data to be value of %d but got %d.", expectedData, list.Head.Data)
-	}
-
-	if list.Head.Next != nil {
-		t.Error("Expected head next to be nil but found node.")
-	}
-}
+	"github.com/stretchr/testify/assert"
+)
 
 func TestSuccessGetLengthSinglyLinkedList(t *testing.T) {
 	list := NewSinglyLinkedList()
@@ -30,9 +14,19 @@ func TestSuccessGetLengthSinglyLinkedList(t *testing.T) {
 	result := list.Length()
 	expected := 2
 
-	if expected != result {
-		t.Errorf("Expected length of %d but got %d", expected, result)
-	}
+	assert.Equalf(t, expected, result, "Expected length of expected but got %d", result)
+}
+
+func TestSuccessAppendSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(25)
+
+	expectedLength := 1
+	expectedData := 25
+
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of 1 but found %d.", list.Length())
+	assert.Equalf(t, expectedData, list.Head.Data, "Expected head node data to be value of %d but found %d.", expectedData, list.Head.Data)
+	assert.Nil(t, list.Head.Next, "Expected head next to be nil but found node.")
 }
 
 func TestSuccessInsertBeforeHeadSinglyLinkedList(t *testing.T) {
@@ -43,17 +37,25 @@ func TestSuccessInsertBeforeHeadSinglyLinkedList(t *testing.T) {
 	expectedLength := 2
 	expectedData := 20
 
-	if expectedLength != list.Length() {
-		t.Errorf("Expected length of %d but got %d.", expectedLength, list.Length())
-	}
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
+	assert.Equalf(t, expectedData, list.Head.Data, "Expected head node data to be value of 56 but found %d.", list.Head.Data)
+	assert.NotNil(t, list.Head.Next, "Expected head next to be node with value of 10.")
+}
 
-	if list.Head.Data != expectedData {
-		t.Errorf("Expected head node data to be value of %d but got %d.", expectedData, list.Head.Data)
-	}
+func TestSuccessInsertAtSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(11)
+	list.Append(33)
 
-	if list.Head.Next == nil {
-		t.Error("Expected head next to be node with value of 10.")
-	}
+	list.InsertAt(22, 1)
+	addedNode := list.Head.Next
+	expectedData := 22
+	expectedLength := 3
+
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of 3 but got %d.", list.Length())
+	assert.Equalf(t, expectedData, addedNode.Data, "Expected node value of %d but got %d.", expectedData, addedNode.Data)
+	assert.NotNil(t, addedNode.Next, "Added node should have a next node but found nil.")
+	assert.Equal(t, 33, addedNode.Next.Data, "Expected node after added node to have value of %d but found %d.", 33, addedNode.Next.Data)
 }
 
 func TestSuccessPopSinglyLinkedList(t *testing.T) {
@@ -64,11 +66,6 @@ func TestSuccessPopSinglyLinkedList(t *testing.T) {
 	expectedLength := 0
 	expectedData := 56
 
-	if expectedLength != list.Length() {
-		t.Errorf("Expected length of %d but got %d.", expectedLength, list.Length())
-	}
-
-	if result.Data != expectedData {
-		t.Errorf("Expected head node data to be value of %d but got %d.", expectedData, list.Head.Data)
-	}
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of 0 but found %d.", list.Length())
+	assert.Equalf(t, expectedData, result.Data, "Expected head node data to be value of 56 but found %d.", result.Data)
 }
