@@ -54,3 +54,17 @@ func (l *SinglyLinkedList) InsertBeforeHead(value int) {
 
 	l.Head = newNode
 }
+
+// Pop deletes and returns the head node from the list.
+func (l *SinglyLinkedList) Pop() *Node {
+	if l.Head != nil {
+		newHead := l.Head.Next
+		l.Head.Next = nil
+		oldHead := l.Head
+		l.Head = newHead
+
+		return oldHead
+	}
+
+	return nil
+}
