@@ -1,5 +1,5 @@
 package main
 
-func placeholder() {
-
+func BreadthFirstSearch() {
+	// stub
 }
