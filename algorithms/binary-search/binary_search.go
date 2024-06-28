@@ -1,25 +1,5 @@
 package main
 
-import "fmt"
-
-func main() {
-
-	// Initialize a slice representing a binary tree
-	tree := []int{-3, -2, -2, 0, 0, 1, 3, 4, 5, 6, 15, 16}
-
-	// Perform iterative binary search
-	result := BinarySearchIterative(tree, 5)
-
-	// Print result
-	fmt.Println(result)
-
-	// Perform recursive binary search
-	result = BinarySearchRecursive(tree, 5)
-
-	// Print result
-	fmt.Println(result)
-}
-
 // BinarySearchIterative is a iterative implementation of the binary search algorithm. Returns the index of the value
 // if found and returns -1 if the value is not found.
 func BinarySearchIterative(tree []int, value int) int {
