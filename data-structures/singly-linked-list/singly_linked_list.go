@@ -1,4 +1,4 @@
-package main
+package list
 
 type Node struct {
 	Data int
