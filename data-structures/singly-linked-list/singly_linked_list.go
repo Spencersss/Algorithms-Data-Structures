@@ -142,3 +142,37 @@ func (l *SinglyLinkedList) DeleteTail() *Node {
 
 	return nil
 }
+
+// Find will search the list for the first node it comes across containing the provided data.
+// If found it will return the index of the node with the value. If not found, this will return -1.
+func (l *SinglyLinkedList) Find(value int) int {
+	curIndex := 0
+	curNode := l.Head
+	for curNode != nil {
+		if curNode.Data == value {
+			return curIndex
+		}
+
+		curIndex++
+		curNode = curNode.Next
+	}
+
+	return -1
+}
+
+// FindAt will search the list for a node at the provided n index.
+// If found it will return a pointer to the node. If not found, this will return nil.
+func (l *SinglyLinkedList) FindAt(n int) *Node {
+	curIndex := 0
+	curNode := l.Head
+	for curNode != nil {
+		if curIndex == n {
+			return curNode
+		}
+
+		curIndex++
+		curNode = curNode.Next
+	}
+
+	return nil
+}

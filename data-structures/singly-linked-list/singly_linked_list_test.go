@@ -97,3 +97,28 @@ func TestSuccessDeleteTailSinglyLinkedList(t *testing.T) {
 	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
 	assert.Equalf(t, expectedData, result.Data, "Expected returned deleted node to have value of %d but found %d.", result.Data, expectedData)
 }
+
+func TestSuccessFindSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(1)
+	list.Append(2)
+
+	result := list.Find(2)
+	expectedIndex := 1
+
+	assert.Equalf(t, expectedIndex, result, "Expected returned index value of %d but found %d.", expectedIndex, result)
+}
+
+func TestSuccessFindAtSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(5)
+	list.Append(4)
+	list.Append(100)
+
+	result := list.FindAt(2)
+	expectedData := 100
+
+	assert.NotNil(t, result, "Found node should not be nil but found nil.")
+	assert.Nil(t, result.Next, "Found node's next node should be nil but found node.")
+	assert.Equalf(t, expectedData, result.Data, "Expected returned node data of %d but found %d.", expectedData, result.Data)
+}
