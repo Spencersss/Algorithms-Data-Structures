@@ -123,3 +123,22 @@ func (l *SinglyLinkedList) DeleteAt(n int) *Node {
 
 	return nil
 }
+
+// DeleteTail removes the last node in the list and returns the node upon removal. If not found, the function will return nil
+func (l *SinglyLinkedList) DeleteTail() *Node {
+	if l.Head != nil {
+		var lastNode *Node
+		var curNode *Node = l.Head
+		for curNode.Next != nil {
+			lastNode = curNode
+			curNode = curNode.Next
+		}
+
+		curNode.Next = nil
+		lastNode.Next = nil
+
+		return curNode
+	}
+
+	return nil
+}

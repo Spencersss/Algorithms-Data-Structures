@@ -83,3 +83,17 @@ func TestSuccessDeleteAtSinglyLinkedList(t *testing.T) {
 	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
 	assert.Equalf(t, expectedData, result.Data, "Expected returned deleted node to have value of %d but found %d.", result.Data, expectedData)
 }
+
+func TestSuccessDeleteTailSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(300)
+	list.Append(515)
+	list.Append(902)
+
+	result := list.DeleteTail()
+	expectedLength := 2
+	expectedData := 902
+
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
+	assert.Equalf(t, expectedData, result.Data, "Expected returned deleted node to have value of %d but found %d.", result.Data, expectedData)
+}
