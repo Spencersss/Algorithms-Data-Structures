@@ -66,6 +66,20 @@ func TestSuccessPopSinglyLinkedList(t *testing.T) {
 	expectedLength := 0
 	expectedData := 56
 
-	assert.Equalf(t, expectedLength, list.Length(), "Expected length of 0 but found %d.", list.Length())
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
 	assert.Equalf(t, expectedData, result.Data, "Expected head node data to be value of 56 but found %d.", result.Data)
+}
+
+func TestSuccessDeleteAtSinglyLinkedList(t *testing.T) {
+	list := NewSinglyLinkedList()
+	list.Append(50)
+	list.Append(100)
+	list.Append(150)
+
+	result := list.DeleteAt(2)
+	expectedLength := 2
+	expectedData := 150
+
+	assert.Equalf(t, expectedLength, list.Length(), "Expected length of %d but found %d.", expectedLength, list.Length())
+	assert.Equalf(t, expectedData, result.Data, "Expected returned deleted node to have value of %d but found %d.", result.Data, expectedData)
 }

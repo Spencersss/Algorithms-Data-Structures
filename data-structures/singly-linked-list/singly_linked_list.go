@@ -96,3 +96,30 @@ func (l *SinglyLinkedList) Pop() *Node {
 
 	return nil
 }
+
+// DeleteAt finds the existing node in the list at the provided n index and attempts to remove it from the list
+// If the node does not exist, a no-op will occur and the list will remain as is. If a node is removed, it will be returned
+// else a nil will be returned.
+func (l *SinglyLinkedList) DeleteAt(n int) *Node {
+	if l.Head != nil || n != 0 {
+		var lastNode *Node
+		var curNode *Node = l.Head
+
+		curIndex := 0
+		for curIndex < n {
+			lastNode = curNode
+			if curNode == nil {
+				return nil
+			}
+			curNode = curNode.Next
+			curIndex++
+		}
+
+		curNode.Next = nil
+		lastNode.Next = curNode.Next
+
+		return curNode
+	}
+
+	return nil
+}
