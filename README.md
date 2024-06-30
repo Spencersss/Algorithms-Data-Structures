@@ -14,5 +14,5 @@ Contained within these sub-directories are the implementation(s) of the specifie
 
 1. Choose the directory `algorithms` or `data-structures` to place your new addition under.
 2. Create a new sub-directory within the decided folder with the name of your newly added structure or algorithm
-3. Add a single file containing atleast one functioning implementation of the structure or algorithm in your preferred language and any relevant tests that you feel are necessary.
+3. Add a single file containing atleast one functioning implementation of the algorithm or data structure in your preferred language and any relevant tests that you feel are necessary.
 4. Once finalized, ensure your changes are on their own branch and create a pull request to the repository and await review.
