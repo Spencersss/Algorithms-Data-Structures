@@ -2,7 +2,6 @@ package sort
 
 import (
 	"algorithms-data-structures/data-structures/queue"
-	"fmt"
 )
 
 // QuickSort performs the quick sort algorithm using the last element as the pivot
@@ -40,7 +39,6 @@ func QuickSort(slice []int) []int {
 // the format of the return value is [low, high], [low, high] with the first low/high being the partition
 // that is smaller than that of the pivot and the other being the values above the pivot.
 func partition(slice *[]int, low int, high int) ([2]int, [2]int) {
-	fmt.Printf("--- Partition - Low: %d High: %d ---\n", low, high)
 	pivot, initialLow, initialHigh := high, low, high
 	pivotValue := (*slice)[pivot]
 	high = high - 1
@@ -50,7 +48,6 @@ func partition(slice *[]int, low int, high int) ([2]int, [2]int) {
 		lowValue := (*slice)[low]
 		highValue := (*slice)[high]
 		if lowValue > pivotValue && highValue < pivotValue {
-			fmt.Printf("Swapping %d with %d\n", lowValue, highValue)
 			swap(slice, low, high)
 		}
 
@@ -62,18 +59,12 @@ func partition(slice *[]int, low int, high int) ([2]int, [2]int) {
 			high -= 1
 		}
 	}
-	fmt.Printf("Before pivot swap: %s Low: %d High: %d\n", fmt.Sprint((*slice)), low, high)
-	// do not swap pivot if all values were less than pivot
+	// swap if left bound ended up being greater than pivot value prior to pivot swap
 	if (*slice)[low] > pivotValue {
 		swap(slice, low, pivot)
 	} else {
 		low += 1
 	}
-
-	fmt.Printf("After pivot swap: %s Low: %d High: %d\n", fmt.Sprint((*slice)), low, high)
-
-	fmt.Printf("Left: %s Right: %s Pivot: %d\n", fmt.Sprint((*slice)[initialLow:low]), fmt.Sprint((*slice)[low+1:initialHigh+1]), pivotValue)
-
 	leftPartition := [2]int{initialLow, low - 1}
 	rightPartition := [2]int{low + 1, initialHigh}
 
