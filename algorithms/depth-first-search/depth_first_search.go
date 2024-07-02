@@ -8,7 +8,7 @@ import (
 
 func DepthFirstSearch(g graph.Graph, v int) []int {
 	visited := []int{v}
-	visiting := stack.New(10)
+	visiting := stack.New[int](10)
 	visiting.Add(v)
 
 	for !visiting.IsEmpty() {

@@ -1,11 +1,17 @@
 package queue
 
 type Queue[T any] struct {
-	Items []T
+	items []T
+}
+
+func New[T any](n int) *Queue[T] {
+	return &Queue[T]{
+		items: make([]T, n),
+	}
 }
 
 func (q *Queue[T]) Enqueue(value T) {
-	q.Items = append(q.Items, value)
+	q.items = append(q.items, value)
 }
 
 func (q *Queue[T]) EnqueueAll(values ...T) {
@@ -15,16 +21,20 @@ func (q *Queue[T]) EnqueueAll(values ...T) {
 }
 
 func (q *Queue[T]) Dequeue() T {
-	item := q.Items[0]
-	q.Items = q.Items[1:]
+	item := q.items[0]
+	q.items = q.items[1:]
 
 	return item
 }
 
 func (q *Queue[T]) Length() int {
-	return len(q.Items)
+	return len(q.items)
 }
 
 func (q *Queue[T]) IsEmpty() bool {
 	return q.Length() == 0
+}
+
+func (q *Queue[T]) Front() T {
+	return q.items[0]
 }
