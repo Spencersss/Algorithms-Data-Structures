@@ -10,7 +10,7 @@ import (
 // Once complete, returns the traversal order.
 func BreadthFirstSearch(g graph.Graph, v int) []int {
 	visited := []int{v}
-	visiting := queue.Queue{}
+	visiting := queue.Queue[int]{}
 	visiting.Enqueue(v)
 
 	for !visiting.IsEmpty() {
