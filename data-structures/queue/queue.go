@@ -6,7 +6,7 @@ type Queue[T any] struct {
 
 func New[T any](n int) *Queue[T] {
 	return &Queue[T]{
-		items: make([]T, n),
+		items: make([]T, 0, n),
 	}
 }
 

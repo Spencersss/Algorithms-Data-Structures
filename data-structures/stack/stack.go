@@ -7,7 +7,7 @@ type Stack[T any] struct {
 // New creates a new stack with an initial capacity of n int values.
 func New[T any](n int) *Stack[T] {
 	return &Stack[T]{
-		items: make([]T, n),
+		items: make([]T, 0, n),
 	}
 }
 
